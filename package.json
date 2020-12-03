@@ -2,10 +2,11 @@
   "name": "ssm",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint Algorithm/*.js --fix"
+    "lint": "eslint Algorithm --fix",
+    "nodemon:": "server/"
   },
   "author": "",
   "license": "ISC",

@@ -10,6 +10,6 @@
 
 function solution(progresses, speeds) {
   var answer = [];
-  console.log(a);
+  console.log(a);l;
   return answer;
 }
