@@ -48,8 +48,6 @@ function solution(answers) {
   }
 
   let maxNum = Math.max.apply(null, count);
-  console.log(count);
-  console.log(maxNum);
 
   answer = count.reduce((acc, cur, idx) => {
     if(maxNum === cur) {
@@ -59,7 +57,7 @@ function solution(answers) {
       return acc;
     }
   },[]);
-  
+
   return answer;
 }
 
