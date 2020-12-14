@@ -20,21 +20,22 @@ function solution(progresses, speeds) {
   let newArr = [];
   
   while(progresses.length > 0) {
-      for(let i = 0; i < progresses.length; i++) {
-        if(progresses[i] < 100) {
-          progresses[i] += speeds[i];
-        }
+    for(let i = 0; i < progresses.length; i++) {
+      if(progresses[i] < 100) {
+        progresses[i] += speeds[i];
       }
+    }
 
-      let cnt = 0;
-      while(progresses[0] >= 100) {
-            progresses.shift();
-            speeds.shift();
-            cnt++;
-      }
-          if(cnt > 0) {
-            newArr.push(cnt); 
-          }
+    let cnt = 0;
+    while(progresses[0] >= 100) {
+      progresses.shift();
+      speeds.shift();
+      cnt++;
+    }
+    
+    if(cnt > 0) {
+      newArr.push(cnt); 
+    }
   }
     return newArr;
 }
