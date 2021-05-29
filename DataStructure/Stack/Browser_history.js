@@ -29,9 +29,6 @@
 
 // 문제 해결
 
-// 현재 접속한 페이지가 새로운 페이지라면 앞으로가기 안됨 => prevStack.push(current), nextStack = []
-// 다음에 올 상황이 뒤로가기인지, 앞으로가기인지, 새로운 페이지인지 알아야한다. current = action[i];
-
 function browserStack(actions, start) {
   let prevStack = [];
   let nextStack = [];
