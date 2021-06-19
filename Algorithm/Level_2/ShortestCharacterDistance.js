@@ -1,0 +1,46 @@
+/*
+한 개의 문자열 str과 문자 s가 주어질 때
+문자열 str의 각 문자가 s와 떨어진 최소거리를 출력하라
+
+단 문자열의 길이는 100을 넘지 않는다.
+*/
+
+// TODO
+// 1. 문자열을 왼쪽 -> 오른쪽으로 순회하면서 문자 s와의 거리를 구한다.
+// 2. 문자열을 오른쪽 -> 왼쪽으로 순회하면서 문자 s와의 거리를 구한다.
+// 1번과 2번의 거리를 비교해서 최소거리로 초기화 한다.
+
+function ShortestCharacterDistance(str, s) {
+
+  let answer = [];
+  let distance = 100;
+
+  // 왼쪽 -> 오른쪽으로 순회
+  for(let el of str) {
+    // 인자로 넘어온 문자 s와 배열의 해당 요소가 같을 경우에는 distance를 0으로 초기화 후 push
+    if(el === s) {
+      distance = 0;
+      answer.push(distance);
+    } else {
+      // 반대의 경우에는 거리를 구하기 위해 distance에 1을 더한 후 push
+      distance++;
+      answer.push(distance);
+    }
+  }
+
+  distance = 100;
+
+  // 오른쪽 -> 왼쪽으로 순회
+  for(let i = str.length -1; i >= 0; i--) {
+    if(str[i] === s) {
+      distance = 0;
+    } else {
+      distance++;
+      answer[i] = Math.min(answer[i], distance);
+    }
+  }
+
+  return answer;
+}
+
+console.log(ShortestCharacterDistance('teachermode', 'e'));
