@@ -1,0 +1,44 @@
+/*
+숫자로 이루어진 배열이 주워질 경우
+연속된 부분수열의 합이 특정값 M이 되는 경우가 몇 번 있는지 구하는 로직을 작성하라!
+*/
+
+// TODO
+/*
+2개의 포인터를 이용해서 풀자!!
+
+- for문을 이용해 한 칸씩 움직일 right 포인터
+- 누적값이 M보다 클 경우 움직일 left 포인터
+
+1. right 포인터로 지나가는 요소의 값을 누적한다.
+1.1 누적한 값이 M과 같은지를 비교한다.
+1.1.1 같을 경우에는 count 1 증가
+
+2. 누적값이 M보다 같거나 클 경우에는
+2.1 누적값에서 배열의[left]의 값을 빼고 left를 1 증가 시킨다.
+2.1.1 그 값을 M과 비교해 같을 경우 count 1 증가
+*/
+
+function solution(m, arr) {
+  let answer = 0;
+  let left = 0;
+  let sum = 0;
+
+  for(let right = 0; right < arr.length; right++) {
+    sum += arr[right];
+
+    if(sum === m) answer++;
+
+    while(sum >= m) {
+      sum -= arr[left++];
+
+      if(sum === m) answer++;
+    }
+  }
+
+  return answer;
+}
+
+const m = 6;
+const arr = [1,2,1,3,1,1,1,2];
+console.log(solution(m,arr));
