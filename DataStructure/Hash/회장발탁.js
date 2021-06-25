@@ -1,0 +1,40 @@
+/*
+어느 학교에서 회장을 뽑기위해 투표를 진행하였다.
+
+출마한 학생은 (5 <= N <= 50) 이라고 할 때 어떤 기호의 후보가 학급회장이 되었는지 출력하는 로직을 작성하라.
+*/
+
+// TODO
+/*
+Hash를 이용해서 풀자 -> Map()
+
+1. 투표한 학생의 수 만큼 반복하면서
+1.1 has를 이용해 hasmMap 변수에 key값이 있는지를 확인한 후 
+1.2 있을 경우 set, get메소드를 이용해 count를 1 증가시켜주고
+1.3 없을 경우 set 메소드를 이용해 count를 1로 지정해준다.
+2. for...of를 이용해서 count를 비교 후 제일 많은 투표를 받은 학생을 출력
+*/
+
+function solution(s) {
+  let answer = '';
+  let hashMap = new Map();
+
+  for(let el of s) {
+    if(hashMap.has(el)) {
+      hashMap.set(el, hashMap.get(el) + 1);
+    } else {
+      hashMap.set(el, 1);
+    }
+  }
+
+  let max = Number.MIN_SAFE_INTEGER;
+
+  for(let [key, value] of hashMap) {
+    if(max < value) {
+      answer = key;
+      max = value;
+    }
+  }
+
+  return answer;
+}
