@@ -1,0 +1,58 @@
+/*
+문자열 S에서 T문자열과 아나그램이 되는 부분문자열의 개수를 구하는 프로그램을 작성하라!
+*/
+
+// TODO
+/*
+해쉬, 투포인터, 슬라이딩 윈도우를 사용해서 풀자.
+1. Map()을 통해 T문자열의 각각의 문자를 count한다.
+2. S문자열의 앞 2개 문자를 Map()을 통해 count한다.
+3. 3번째 문자부터 S의 길이만큼 반복문을 돌면서 
+4. 한 글자씩 추가하면서 count를 한다.
+5. compareMap함수를 작성하고 Map을 비교한다.
+6. 비교해서 true가 리턴되면 answer를 1씩 증가시킨다.
+*/
+
+function compoareMap(map1, map2) {
+  if(map1.size !== map2.size) return false;
+
+  for(let [key, value] of map1) {
+    if(!map2.has(key) || map2.get(key) !== val) return false;
+  }
+
+  return true;
+}
+
+function solution(s, t) {
+  let answer = 0;
+
+  let sH = new Map();
+  let tH = new Map();
+
+  // t문자열의 문자들의 갯수를 count
+  for(let i = 0; i < t.length; i++) {
+    if(tH.has(t[i])) tH.set(t[i], tH.get(t[i]) + 1);
+    else tH.set(t[i], 1);
+  }
+
+  // s문자열의 앞의 2개의 문자들의 갯수를 count
+  for(let i = 0; i < t.length - 1; i++) {
+    if(sH.has(s[i])) sH.set(s[i], sH.get(s[i]) + 1);
+    else sH.set(s[i], 1)
+  }
+
+  let left = 0;
+
+  for(let right = t.length -1; right < s.length; right++) {
+    if(sH.has(s[right])) sH.set(s[right], sH.get(s[right]) + 1);
+    else sH.set(s[right], 1);
+
+    if(compoareMap(sH, tH)) answer++;
+
+    sH.set(s[left], sH.get(s[left]) - 1);
+
+    if(sH.get(s[left]) === 0) sH.delete(s[left]);
+    left++;
+  }
+  return answer;
+}
